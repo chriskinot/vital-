@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
     <style>
@@ -45,7 +45,7 @@
             --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
             --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
             --max-width: 1200px;
-            --nav-height: 90px;
+            --nav-height: 86px;
             --radius-lg: 24px;
             --radius-md: 16px;
             --radius-xl: 32px;
@@ -297,7 +297,54 @@
             }
         }
 
-        /* ── navigation (GREY BAR + LARGER LOGO) ── */
+        /* ══════════════════════════════════════════════
+           BRAND LOGO — typographic lockup
+           ══════════════════════════════════════════════ */
+        .logo-mark {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .logo-word {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--ink);
+            padding-left: 0.13em;
+            /* optical compensation for trailing letter-spacing */
+            transition: font-size 0.4s var(--transition-smooth), color 0.35s var(--transition-smooth);
+        }
+
+        .logo-word .logo-accent {
+            color: var(--forest);
+            font-weight: 800;
+            transition: color 0.35s var(--transition-smooth);
+        }
+
+        .logo-tagline {
+            display: block;
+            margin-top: 5px;
+            font-family: var(--font-sans);
+            font-size: 0.52rem;
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: var(--dark-muted);
+            white-space: nowrap;
+            padding-left: 0.26em;
+            transition: font-size 0.4s var(--transition-smooth), letter-spacing 0.4s var(--transition-smooth),
+                color 0.35s var(--transition-smooth);
+        }
+
+        /* ── navigation (GREY BAR) ── */
         .nav {
             position: fixed;
             top: 0;
@@ -318,7 +365,7 @@
             -webkit-backdrop-filter: blur(24px);
             border-bottom-color: rgba(50, 50, 50, 0.18);
             box-shadow: 0 4px 24px rgba(50, 50, 50, 0.10);
-            height: 76px;
+            height: 74px;
         }
 
         .nav-container {
@@ -333,35 +380,29 @@
         }
 
         .nav-logo {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 14px;
-            white-space: nowrap;
             flex-shrink: 0;
+            padding: 6px 0;
+            transition: transform 0.4s var(--transition-smooth);
         }
 
-        .nav-logo img {
-            height: 72px;
-            width: auto;
-            object-fit: contain;
-            border-radius: 8px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 3px 10px rgba(50, 50, 50, 0.18));
-            transition: height 0.4s var(--transition-smooth), filter 0.4s var(--transition-smooth);
+        .nav-logo:hover {
+            transform: translateY(-1px);
         }
 
-        .nav.scrolled .nav-logo img {
-            height: 62px;
-            filter: drop-shadow(0 2px 6px rgba(50, 50, 50, 0.12));
+        .nav-logo:hover .logo-accent {
+            color: var(--sage);
         }
 
-        .nav-logo-text {
-            font-family: var(--font-serif);
-            font-weight: 600;
-            font-size: 1.65rem;
-            letter-spacing: -0.01em;
-            color: var(--dark);
-            white-space: nowrap;
+        .nav.scrolled .logo-word {
+            font-size: 1.4rem;
+        }
+
+        .nav.scrolled .logo-tagline {
+            font-size: 0.46rem;
+            letter-spacing: 0.24em;
+            padding-left: 0.24em;
         }
 
         .nav-links {
@@ -1800,8 +1841,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -1809,15 +1850,20 @@
             align-items: center;
             justify-content: center;
             z-index: 2;
-            overflow: hidden;
         }
 
-        .formulation-center .center-logo {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            border-radius: 50%;
-            display: block;
+        .formulation-center .center-mark {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: 0.05em;
+            color: var(--white);
+            padding-left: 0.05em;
+        }
+
+        .formulation-center .center-mark .center-accent {
+            color: #A8C7B4;
         }
 
         .formulation-list {
@@ -2287,24 +2333,25 @@
         }
 
         .footer-brand .footer-logo {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        .footer-brand .footer-logo img {
-            height: 34px;
-            width: auto;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-
-        .footer-brand .footer-logo-text {
-            font-family: var(--font-serif);
-            font-weight: 600;
-            font-size: 1.25rem;
+        .footer-brand .footer-logo .logo-word {
+            font-size: 1.3rem;
             color: var(--white);
+        }
+
+        .footer-brand .footer-logo .logo-accent {
+            color: #A8C7B4;
+        }
+
+        .footer-brand .footer-logo .logo-tagline {
+            font-size: 0.46rem;
+            letter-spacing: 0.24em;
+            padding-left: 0.24em;
+            color: rgba(255, 255, 255, 0.45);
         }
 
         .footer-brand .footer-statement {
@@ -2751,6 +2798,26 @@
                 padding: 10px 16px;
                 font-size: 0.66rem;
             }
+
+            .logo-word {
+                font-size: 1.38rem;
+            }
+
+            .logo-tagline {
+                font-size: 0.45rem;
+                letter-spacing: 0.2em;
+                padding-left: 0.2em;
+            }
+
+            .nav.scrolled .logo-word {
+                font-size: 1.24rem;
+            }
+
+            .nav.scrolled .logo-tagline {
+                font-size: 0.41rem;
+                letter-spacing: 0.19em;
+                padding-left: 0.19em;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -2903,6 +2970,10 @@
         }
 
         @media (max-width: 900px) {
+            :root {
+                --nav-height: 78px;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -2919,38 +2990,58 @@
                 padding: 0 22px;
             }
 
-            .nav-logo img {
-                height: 62px;
+            .nav.scrolled {
+                height: 68px;
             }
 
-            .nav.scrolled .nav-logo img {
-                height: 54px;
+            .logo-word {
+                font-size: 1.55rem;
             }
 
-            .nav-logo-text {
-                font-size: 1.45rem;
+            .logo-tagline {
+                font-size: 0.5rem;
+                letter-spacing: 0.24em;
+                padding-left: 0.24em;
+            }
+
+            .nav.scrolled .logo-word {
+                font-size: 1.38rem;
+            }
+
+            .nav.scrolled .logo-tagline {
+                font-size: 0.45rem;
             }
         }
 
         @media (max-width: 768px) {
             :root {
-                --nav-height: 68px;
+                --nav-height: 70px;
                 --section-pad-x: 20px;
                 --section-pad-y: 64px;
                 --radius-xl: 24px;
                 --radius-lg: 20px;
             }
 
-            .nav-logo img {
-                height: 54px;
+            .nav.scrolled {
+                height: 62px;
             }
 
-            .nav.scrolled .nav-logo img {
-                height: 48px;
+            .logo-word {
+                font-size: 1.4rem;
             }
 
-            .nav-logo-text {
-                font-size: 1.3rem;
+            .logo-tagline {
+                font-size: 0.45rem;
+                letter-spacing: 0.21em;
+                padding-left: 0.21em;
+            }
+
+            .nav.scrolled .logo-word {
+                font-size: 1.26rem;
+            }
+
+            .nav.scrolled .logo-tagline {
+                font-size: 0.41rem;
             }
 
             .hero {
@@ -3199,16 +3290,25 @@
                 padding: 0 18px;
             }
 
-            .nav-logo img {
-                height: 48px;
+            .logo-word {
+                font-size: 1.3rem;
+                letter-spacing: 0.11em;
+                padding-left: 0.11em;
             }
 
-            .nav.scrolled .nav-logo img {
-                height: 42px;
+            .logo-tagline {
+                font-size: 0.42rem;
+                letter-spacing: 0.18em;
+                padding-left: 0.18em;
+                margin-top: 4px;
             }
 
-            .nav-logo-text {
-                font-size: 1.15rem;
+            .nav.scrolled .logo-word {
+                font-size: 1.18rem;
+            }
+
+            .nav.scrolled .logo-tagline {
+                font-size: 0.38rem;
             }
 
             .hero {
@@ -3358,13 +3458,12 @@
             }
 
             .formulation-center {
-                width: 52px;
-                height: 52px;
+                width: 54px;
+                height: 54px;
             }
 
-            .formulation-center .center-logo {
-                width: 30px;
-                height: 30px;
+            .formulation-center .center-mark {
+                font-size: 0.78rem;
             }
 
             .callout {
@@ -3381,8 +3480,28 @@
                 padding-bottom: 32px;
             }
 
+            .footer-brand .footer-logo .logo-word {
+                font-size: 1.18rem;
+            }
+
             .mobile-menu a {
                 font-size: 1.35rem;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            /* hide tagline on very small screens to keep the bar clean */
+            .logo-tagline {
+                display: none;
+            }
+
+            .logo-word {
+                font-size: 1.4rem;
+            }
+
+            .nav.scrolled .logo-word {
+                font-size: 1.26rem;
             }
         }
 
@@ -3392,16 +3511,8 @@
                 --section-pad-y: 48px;
             }
 
-            .nav-logo img {
-                height: 42px;
-            }
-
-            .nav.scrolled .nav-logo img {
-                height: 38px;
-            }
-
-            .nav-logo-text {
-                font-size: 1.05rem;
+            .logo-word {
+                font-size: 1.3rem;
             }
 
             .hero-carousel {
@@ -3462,7 +3573,7 @@
                 padding: 20px 16px;
             }
 
-            .footer-brand .footer-logo-text {
+            .footer-brand .footer-logo .logo-word {
                 font-size: 1.1rem;
             }
 
@@ -3509,10 +3620,11 @@
     <!-- Navigation -->
     <header class="nav" id="mainNav" role="banner">
         <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="Vital East Africa Home">
-                <img src="logo.jpg" alt="Vital East Africa Logo"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                <span class="nav-logo-text" style="display:none;">Vital East Africa</span>
+            <a href="#" class="nav-logo" aria-label="VITAL — Clinical Skincare Formulations, home">
+                <span class="logo-mark">
+                    <span class="logo-word">V<span class="logo-accent">!</span>TAL</span>
+                    <span class="logo-tagline">Clinical Skincare Formulations</span>
+                </span>
             </a>
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -3784,8 +3896,7 @@
                         <div class="molecule-node"></div>
                         <div class="molecule-node"></div>
                         <div class="formulation-center">
-                            <img src="logo.jpg" alt="Vital East Africa Logo" class="center-logo"
-                                onerror="this.style.display='none'; this.parentElement.textContent='V';" />
+                            <span class="center-mark" aria-hidden="true">V<span class="center-accent">!</span></span>
                         </div>
                     </div>
                 </div>
@@ -4115,9 +4226,10 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <span class="footer-logo">
-                        <img src="logo.jpg" alt="Vital East Africa Logo"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                        <span class="footer-logo-text" style="display:none;">Vital East Africa</span>
+                        <span class="logo-mark">
+                            <span class="logo-word">V<span class="logo-accent">!</span>TAL</span>
+                            <span class="logo-tagline">Clinical Skincare Formulations</span>
+                        </span>
                     </span>
                     <p class="footer-statement">
                         A product-led, direct-to-consumer health and wellness brand on a mission to make high quality
@@ -4422,26 +4534,6 @@
                 post.addEventListener('click', function () {
                     window.open('https://www.instagram.com/vitaleastafrica', '_blank', 'noopener,noreferrer');
                 });
-            });
-
-            /* ─────────────────────────────
-               Logo fallback
-            ───────────────────────────── */
-            document.querySelectorAll('img[src="logo.jpg"]').forEach(function (img) {
-                img.addEventListener('error', function () {
-                    this.style.display = 'none';
-                    const fb = this.nextElementSibling;
-                    if (fb && (fb.classList.contains('nav-logo-text') || fb.classList.contains('footer-logo-text'))) {
-                        fb.style.display = 'block';
-                    }
-                });
-                if (img.complete && img.naturalWidth === 0) {
-                    img.style.display = 'none';
-                    const fb = img.nextElementSibling;
-                    if (fb && (fb.classList.contains('nav-logo-text') || fb.classList.contains('footer-logo-text'))) {
-                        fb.style.display = 'block';
-                    }
-                }
             });
 
             /* ═══════════════════════════════════════════════════
